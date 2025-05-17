@@ -12,9 +12,10 @@ st.set_page_config(
 
 # --- Загрузка и кэширование данных ---
 @st.cache_data
-def load_data(file_path="client_tags_results.xlsx"):
+def load_data(file_path="client_tags_results_csv.csv"):
     try:
-        df = pd.read_excel(file_path)
+        df = pd.read_csv(file_path)
+        # df.to_csv("client_tags_results_csv.csv", index=False)
         if not df.empty and 'TAGS' in df.columns:
             # Преобразование колонки TAGS, если она сохранена как строка-список
             if isinstance(df['TAGS'].iloc[0], str) and df['TAGS'].iloc[0].strip().startswith('['):
